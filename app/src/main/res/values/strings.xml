@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">SiRekom</string>
+    <string name="permission_dialog">Accessing Lacation Permissions required</string>
+    <string name="go_to_permissions_settigs">Go to App settings and enable permissions</string>
+</resources>

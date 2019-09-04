@@ -1,0 +1,26 @@
+package com.example.master.sirekom;
+
+import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
+import android.view.*;
+import android.content.Intent;
+
+public class MainActivity extends AppCompatActivity {
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+    }
+    public void pilihan(View view){
+    Intent intent = new Intent(MainActivity.this,Kamera.class);
+        intent.putExtra("proses","pilihan");
+    startActivity(intent);
+    }
+    public void kecocokan(View view){
+        Intent intent = new Intent(MainActivity.this,Kamera.class);
+        intent.putExtra("proses","cocok");
+        startActivity(intent);
+    }
+}
+
