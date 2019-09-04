@@ -23,12 +23,11 @@
             </intent-filter>
         </activity>
         <activity android:name=".MainActivity" />
-        <activity android:name=".Kamera" />
-        <activity android:name=".Hasilpilihanjilbab" />
-        <activity android:name=".WarnaDominan" />
+        <activity android:name=".PilihanWarna.Kamera" />
+        <activity android:name=".PilihanWarna.Hasilpilihanjilbab" />
         <activity android:name=".WarBaJilSer" />
         <activity android:name=".WarJilBaTikSer" />
-
+        <activity android:name=".PilihanWarna.WarnaDominan"/>
 
         <provider
             android:name="android.support.v4.content.FileProvider"
@@ -40,7 +39,7 @@
                 android:resource="@xml/provider_paths" />
         </provider>
 
-        <activity android:name=".WarnaDominan"></activity>
+
     </application>
 
 </manifest>

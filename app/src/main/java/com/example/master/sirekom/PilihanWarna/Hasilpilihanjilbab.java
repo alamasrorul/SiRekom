@@ -1,7 +1,5 @@
-package com.example.master.sirekom;
+package com.example.master.sirekom.PilihanWarna;
 
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.view.*;
@@ -10,8 +8,8 @@ import android.os.Bundle;
 import android.widget.Button;
 import android.widget.ImageView;
 
-import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
+import com.example.master.sirekom.MainActivity;
+import com.example.master.sirekom.R;
 
 public class Hasilpilihanjilbab extends AppCompatActivity {
     ImageView imageView;

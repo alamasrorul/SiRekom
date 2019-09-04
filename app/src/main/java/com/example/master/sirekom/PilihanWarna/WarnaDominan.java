@@ -1,4 +1,4 @@
-package com.example.master.sirekom;
+package com.example.master.sirekom.PilihanWarna;
 
 import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
@@ -9,14 +9,12 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.support.v7.graphics.Palette;
+
+import com.example.master.sirekom.R;
+import com.example.master.sirekom.WarBaJilSer;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.List;
 
 
 public class WarnaDominan extends AppCompatActivity {

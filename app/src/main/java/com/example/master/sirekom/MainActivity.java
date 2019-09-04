@@ -5,6 +5,8 @@ import android.os.Bundle;
 import android.view.*;
 import android.content.Intent;
 
+import com.example.master.sirekom.PilihanWarna.Kamera;
+
 public class MainActivity extends AppCompatActivity {
 
     @Override
@@ -13,7 +15,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
     }
     public void pilihan(View view){
-    Intent intent = new Intent(MainActivity.this,Kamera.class);
+    Intent intent = new Intent(MainActivity.this, Kamera.class);
         intent.putExtra("proses","pilihan");
     startActivity(intent);
     }

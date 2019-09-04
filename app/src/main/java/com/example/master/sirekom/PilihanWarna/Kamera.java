@@ -1,4 +1,4 @@
-package com.example.master.sirekom;
+package com.example.master.sirekom.PilihanWarna;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -20,6 +20,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 
+
+import com.example.master.sirekom.R;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;

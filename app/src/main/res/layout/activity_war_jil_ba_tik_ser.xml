@@ -18,7 +18,8 @@
         android:textStyle="bold"
         android:typeface="serif"
         tools:layout_editor_absoluteX="117dp"
-        tools:layout_editor_absoluteY="432dp" />
+        tools:layout_editor_absoluteY="432dp"
+        tools:ignore="MissingConstraints" />
 
     <TextView
         android:id="@+id/textView6"
@@ -31,6 +32,7 @@
         android:textStyle="bold"
         android:typeface="serif"
         tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="68dp" />
+        tools:layout_editor_absoluteY="68dp"
+        tools:ignore="MissingConstraints" />
 
 </android.support.constraint.ConstraintLayout>
