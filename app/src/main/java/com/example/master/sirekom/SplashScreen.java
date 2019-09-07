@@ -1,7 +1,6 @@
 package com.example.master.sirekom;
 
 import android.Manifest;
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -11,11 +10,10 @@ import android.os.Bundle;
 import android.provider.Settings;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
-import android.support.v4.app.DialogFragment;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
-
-import com.example.master.sirekom.helper.PermissionHelper;
+import android.view.View;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -23,10 +21,10 @@ import java.util.List;
 import java.util.Map;
 
 public class SplashScreen extends AppCompatActivity {
-    PermissionHelper permissionHelper;
+
     Intent intent;
 
-    //list permission
+    //permission variable
     String[] reqPermission = {
             Manifest.permission.CAMERA,
             Manifest.permission.WRITE_EXTERNAL_STORAGE,
@@ -40,21 +38,26 @@ public class SplashScreen extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.splashscreen);
-        permissionHelper = new PermissionHelper(this);
 
-        //check permission pada app
+        //cek izin pada app
         if(checkAndRequestPermissions()){
             startMain();
         }
     }
 
     public void startMain(){
-        intent = new Intent(SplashScreen.this, MainActivity.class);
+        intent = new Intent(this, MainActivity.class);
         startActivity(intent);
         finish();
     }
+
+    /*
+    *Mulai----
+    * Area kode permission request {camera, read and write external storage}
+    * dan mengatasi jika user mencentang checkbox never ask again
+    * */
     public boolean checkAndRequestPermissions(){
-        //check permission yg udah di acc
+        //penambahan permission request
         List<String> listPermissionRequest = new ArrayList<>();
         for(String perm : reqPermission){
             if(ContextCompat.checkSelfPermission(this,perm) != PackageManager.PERMISSION_GRANTED){
@@ -62,14 +65,15 @@ public class SplashScreen extends AppCompatActivity {
 
             }
         }
-        //meminta permission yg belum acc
+        //meminta izin aplikasi untuk pertama kali dibuka
         if(!listPermissionRequest.isEmpty()){
-            ActivityCompat.requestPermissions(this, listPermissionRequest.toArray(new String[listPermissionRequest.size()]), PERMISSION_REQUEST_CODE);
+            ActivityCompat.requestPermissions(this, listPermissionRequest.toArray(new String[0]), PERMISSION_REQUEST_CODE);
             return false;
         }
         return true;
     }
 
+    //disini tanggapan user diolah, mulai dari diberi atau tidaknya izin hingga penanganan checkbox never ask again dicentang
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         if (requestCode == PERMISSION_REQUEST_CODE){
@@ -77,7 +81,7 @@ public class SplashScreen extends AppCompatActivity {
             int deniedCount = 0;
 
             for(int i=0;  i<grantResults.length; i++){
-                if(grantResults[i] == PackageManager.PERMISSION_DENIED){
+                if(grantResults[i] != PackageManager.PERMISSION_GRANTED){
                     permissionResult.put(permissions[i], grantResults[i]);
                     deniedCount++;
                 }
@@ -87,11 +91,12 @@ public class SplashScreen extends AppCompatActivity {
             }else{
                 for(Map.Entry<String, Integer> entry : permissionResult.entrySet()){
                     String permName = entry.getKey();
-                    int permResult = entry.getValue();
 
-                    //jika aplikasi tidak diizinkan akan keluar keterangan
+                    //jika aplikasi tidak diberi izin maka akan keluar keterangan diperlakannya izin tersebut
                     if(ActivityCompat.shouldShowRequestPermissionRationale(this,permName)){
                         AlertDialog.Builder builder = new AlertDialog.Builder(this);
+
+                        //edit pesan disini
                         builder.setMessage("Aplikasi ini memerlukan akses kamera dan penyimpanan untuk bisa berjalan dengan baik").setTitle("SiRekom")
                                 .setIcon(R.mipmap.ic_launcher_rd)
                                 .setPositiveButton("ya, beri izin", new DialogInterface.OnClickListener() {
@@ -103,12 +108,17 @@ public class SplashScreen extends AppCompatActivity {
                                     public void onClick(DialogInterface dialog, int id) {
                                         finish();
                                     }
-                                });
-                        builder.show();
+                                }).show();
                     }else{
-                        //membuat dialog untuk pergi ke pengaturan
+
+                        //membuat dialog untuk pergi ke pengaturan jika user menekan never ask again
+                        TextView messageView = new TextView(this);
+                        messageView.setText(R.string.reqPermManually);
+                        messageView.setTextAlignment(View.TEXT_ALIGNMENT_GRAVITY);
+                        messageView.setPadding(20, 20, 20, 10);
+
                         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-                        builder.setMessage("Anda tidak mengizinkan aplikasi mengakses fitur android secara permanen. izinkan akses melalui [Pengaturan] > [Perizinan].").setTitle("SiRekom")
+                        builder.setView(messageView).setTitle("SiRekom")
                                 .setIcon(R.mipmap.ic_launcher_rd)
                                 .setPositiveButton("pergi ke pengaturan", new DialogInterface.OnClickListener() {
                                     public void onClick(DialogInterface dialog, int id) {
@@ -116,38 +126,20 @@ public class SplashScreen extends AppCompatActivity {
                                         Intent intent = new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS, Uri.fromParts("package",getPackageName(),null));
                                         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                                         startActivity(intent);
+                                        finish();
                                     }
                                 })
                                 .setNegativeButton("tidak, keluar saja", new DialogInterface.OnClickListener() {
                                     public void onClick(DialogInterface dialog, int id) {
                                         finish();
                                     }
-                                });
-                        builder.show();
+                                }).show();
                     }
                 }
             }
         }
     }
-
-    /*    private boolean checkAndRequestPermissions(){
-        permissionHelper.permissionListener(new PermissionHelper.PermissionListener() {
-            @Override
-            public void onPermissionCheckDone() {
-                intent = new Intent(SplashScreen.this, MainActivity.class);
-                startActivity(intent);
-                finish();
-            }
-        });
-
-        permissionHelper.checkAndRequestPermissions();
-
-        return true;
-    }
-
-    //@Override
-    public void onRequestPermissionResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults ){
-        super.onRequestPermissionsResult(requestCode,permissions, grantResults);
-        permissionHelper.onRequestCallBack(requestCode,permissions, grantResults);
-    }*/
+    /*
+    *----Berakhir
+     */
 }
