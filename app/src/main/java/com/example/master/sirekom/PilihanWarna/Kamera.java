@@ -55,8 +55,8 @@ public class Kamera extends AppCompatActivity {
         Intent intent = getIntent();
         proses = intent.getStringExtra("proses");
 
-        btn_choose_image = (Button) findViewById(R.id.btn_choose_image);
-        imageView = (ImageView) findViewById(R.id.image_view);
+        btn_choose_image = findViewById(R.id.btn_choose_image);
+        imageView = findViewById(R.id.image_view);
 
         btn_choose_image.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -79,7 +79,7 @@ public class Kamera extends AppCompatActivity {
 
         AlertDialog.Builder builder = new AlertDialog.Builder(Kamera.this);
         builder.setTitle("Tambah Foto");
-        builder.setIcon(R.mipmap.ic_launcher);
+        builder.setIcon(R.mipmap.ic_launcher_rd);
         builder.setItems(items, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int item) {
