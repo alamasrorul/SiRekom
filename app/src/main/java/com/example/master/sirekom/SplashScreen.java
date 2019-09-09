@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
 import android.provider.Settings;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
@@ -21,7 +22,6 @@ import java.util.List;
 import java.util.Map;
 
 public class SplashScreen extends AppCompatActivity {
-
     Intent intent;
 
     //permission variable
@@ -41,14 +41,20 @@ public class SplashScreen extends AppCompatActivity {
 
         //cek izin pada app
         if(checkAndRequestPermissions()){
-            startMain();
+            startMain(1500);
         }
     }
 
-    public void startMain(){
-        intent = new Intent(this, MainActivity.class);
-        startActivity(intent);
-        finish();
+    public void startMain(int timer){
+        Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                intent = new Intent(SplashScreen.this, MainActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        },timer);
     }
 
     /*
@@ -76,6 +82,9 @@ public class SplashScreen extends AppCompatActivity {
     //disini tanggapan user diolah, mulai dari diberi atau tidaknya izin hingga penanganan checkbox never ask again dicentang
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+
+        final AlertDialog.Builder builder = new AlertDialog.Builder(this);
+
         if (requestCode == PERMISSION_REQUEST_CODE){
             HashMap<String, Integer> permissionResult = new HashMap<>();
             int deniedCount = 0;
@@ -87,14 +96,14 @@ public class SplashScreen extends AppCompatActivity {
                 }
             }
             if(deniedCount == 0) {
-                startMain();
+                //start immediately, because something
+                startMain(0);
             }else{
                 for(Map.Entry<String, Integer> entry : permissionResult.entrySet()){
                     String permName = entry.getKey();
 
                     //jika aplikasi tidak diberi izin maka akan keluar keterangan diperlakannya izin tersebut
                     if(ActivityCompat.shouldShowRequestPermissionRationale(this,permName)){
-                        AlertDialog.Builder builder = new AlertDialog.Builder(this);
 
                         //edit pesan disini
                         builder.setMessage("Aplikasi ini memerlukan akses kamera dan penyimpanan untuk bisa berjalan dengan baik").setTitle("SiRekom")
@@ -117,7 +126,6 @@ public class SplashScreen extends AppCompatActivity {
                         messageView.setTextAlignment(View.TEXT_ALIGNMENT_GRAVITY);
                         messageView.setPadding(20, 20, 20, 10);
 
-                        AlertDialog.Builder builder = new AlertDialog.Builder(this);
                         builder.setView(messageView).setTitle("SiRekom")
                                 .setIcon(R.mipmap.ic_launcher_rd)
                                 .setPositiveButton("pergi ke pengaturan", new DialogInterface.OnClickListener() {
