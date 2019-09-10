@@ -2,4 +2,6 @@
     <string name="app_name">SiRekom</string>
     <string name="permission_dialog">Accessing Lacation Permissions required</string>
     <string name="go_to_permissions_settigs">Go to App settings and enable permissions</string>
+    <string name="imgae_splashscreen">imgae_splashScreen</string>
+    <string name="reqPermManually">"Anda tidak mengizinkan aplikasi mengakses beberapa fitur android secara permanen. izinkan akses melalui [Pengaturan] > [Perizinan]."</string>
 </resources>
