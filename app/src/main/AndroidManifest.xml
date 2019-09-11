@@ -2,12 +2,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.master.sirekom">
 
-    <uses-permission android:name="android.permission.CAMERA" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-
-    <uses-feature android:name="android.hardware.camera.any" />
-
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -15,7 +9,11 @@
         android:roundIcon="@mipmap/ic_launcher_rd_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".SplashScreen"
+        <activity android:name=".CekCocok.CekCocok"></activity>
+        <activity android:name=".CekCocok.GetNilaiHsvBaju" />
+        <activity android:name=".CekCocok.CamKecBaju" />
+        <activity
+            android:name=".SplashScreen"
             android:theme="@style/AppTheme.NoActionBarFull">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -28,7 +26,7 @@
         <activity android:name=".PilihanWarna.Hasilpilihanjilbab" />
         <activity android:name=".WarBaJilSer" />
         <activity android:name=".WarJilBaTikSer" />
-        <activity android:name=".PilihanWarna.WarnaDominan"/>
+        <activity android:name=".PilihanWarna.WarnaDominan" />
 
         <provider
             android:name="android.support.v4.content.FileProvider"
@@ -39,8 +37,12 @@
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/provider_paths" />
         </provider>
-
-
     </application>
+
+    <uses-feature android:name="android.hardware.camera.any" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+
+    <uses-permission android:name="android.permission.CAMERA" />
 
 </manifest>
