@@ -80,7 +80,7 @@ public class CamKecBaju extends AppCompatActivity {
         //Ubah Text
        if(proses.equals("Krudung")){
             txt = (TextView) findViewById(R.id.textcam);
-            txt.setText("Pilih Krudung");
+            txt.setText("Pilih Hijab");
            huemaksBj = intent.getIntExtra("huemaksBj",0);
            saturmaksBj = intent.getFloatExtra("saturmaksBj",0f);
            brightmaksBj = intent.getFloatExtra("brightmaksBj",0f);

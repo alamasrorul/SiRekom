@@ -18,7 +18,7 @@ public class MainActivity extends AppCompatActivity {
     public void pilihan(View view){
     Intent intent = new Intent(MainActivity.this, Kamera.class);
         intent.putExtra("proses","pilihan");
-    startActivity(intent);
+        startActivity(intent);
     }
     public void kecocokan(View view){
         Intent intent = new Intent(MainActivity.this, CamKecBaju.class);

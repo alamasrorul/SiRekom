@@ -3,7 +3,9 @@ package com.example.master.sirekom.CekCocok;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
 
+import com.example.master.sirekom.MainActivity;
 import com.example.master.sirekom.R;
 
 public class CekCocok extends AppCompatActivity {
@@ -56,8 +58,8 @@ public class CekCocok extends AppCompatActivity {
 
         }
         //Putih
-        else if(brightmaks>0.85){
-            if(brightmaksKd>0.85){
+        else if(brightmaks>0.95){
+            if(brightmaksKd>0.95){
                 setContentView(R.layout.activity_cek_cocok);
             }
 
@@ -78,10 +80,10 @@ public class CekCocok extends AppCompatActivity {
 
         }
         //RED
-        else if (((huemaks <= 45) || (huemaks <= 360 && huemaks >= 345)) &&(saturmaks>=0.25)&&((brightmaks>=0.15)&&(brightmaks<=0.85))) {
+        else if (((huemaks <= 45) || (huemaks <= 360 && huemaks >= 345)) &&(saturmaks>=0.25)&&((brightmaks>=0.15)&&(brightmaks<=0.95))) {
 
             //Pencocokan
-            if(((huemaksKd <= 45) || (huemaksKd <= 360 && huemaksKd >= 345)) &&(saturmaksKd>=0.25)&&((brightmaksKd>=0.15)&&(brightmaksKd<=0.85))){
+            if(((huemaksKd <= 45) || (huemaksKd <= 360 && huemaksKd >= 345)) &&(saturmaksKd>=0.25)&&((brightmaksKd>=0.15)&&(brightmaksKd<=0.95))){
             setContentView(R.layout.activity_cek_cocok);}
 
             else{
@@ -89,9 +91,9 @@ public class CekCocok extends AppCompatActivity {
             }
         }
         //Kuning
-        else if((huemaks<=60 && huemaks>45)&&(saturmaks>=0.25)&&((brightmaks>=0.15)&&(brightmaks<=0.85))){
+        else if((huemaks<=60 && huemaks>45)&&(saturmaks>=0.25)&&((brightmaks>=0.15)&&(brightmaks<=0.95))){
 
-            if((huemaksKd <= 60 &&huemaks>45) &&(saturmaksKd>=0.25)&&((brightmaksKd>=0.15)&&(brightmaksKd<=0.85))){
+            if((huemaksKd <= 60 &&huemaks>45) &&(saturmaksKd>=0.25)&&((brightmaksKd>=0.15)&&(brightmaksKd<=0.95))){
                 setContentView(R.layout.activity_cek_cocok);}
 
             else{
@@ -99,9 +101,9 @@ public class CekCocok extends AppCompatActivity {
             }
         }
         //Hijau
-        else if((huemaks<=165 && huemaks>60)&&(saturmaks>=0.25)&&((brightmaks>=0.15)&&(brightmaks<=0.85))) {
+        else if((huemaks<=165 && huemaks>60)&&(saturmaks>=0.25)&&((brightmaks>=0.15)&&(brightmaks<=0.95))) {
 
-            if((huemaksKd<=165 && huemaksKd>60)&&(saturmaksKd>=0.25)&&((brightmaksKd>=0.15)&&(brightmaksKd<=0.85))) {
+            if((huemaksKd<=165 && huemaksKd>60)&&(saturmaksKd>=0.25)&&((brightmaksKd>=0.15)&&(brightmaksKd<=0.95))) {
                 setContentView(R.layout.activity_cek_cocok);
             }
 
@@ -110,9 +112,9 @@ public class CekCocok extends AppCompatActivity {
             }
         }
         //Biru
-        else if((huemaks<=255 && huemaks>165)&&(saturmaks>=0.25)&&((brightmaks>=0.15)&&(brightmaks<=0.85))) {
+        else if((huemaks<=255 && huemaks>165)&&(saturmaks>=0.25)&&((brightmaks>=0.15)&&(brightmaks<=0.95))) {
 
-            if((huemaksKd<=255 && huemaksKd>=165)&&(saturmaksKd>=0.25)&&((brightmaksKd>=0.15)&&(brightmaksKd<=0.85))) {
+            if((huemaksKd<=255 && huemaksKd>=165)&&(saturmaksKd>=0.25)&&((brightmaksKd>=0.15)&&(brightmaksKd<=0.95))) {
                 setContentView(R.layout.activity_cek_cocok);
             }
 
@@ -122,9 +124,9 @@ public class CekCocok extends AppCompatActivity {
         }
 
         //Ungu
-        else if((huemaks<=285 && huemaks>255)&&(saturmaks>=0.25)&&((brightmaks>=0.15)&&(brightmaks<=0.85))) {
+        else if((huemaks<=285 && huemaks>255)&&(saturmaks>=0.25)&&((brightmaks>=0.15)&&(brightmaks<=0.95))) {
 
-            if((huemaksKd<=285 && huemaksKd>255)&&(saturmaksKd>=0.25)&&((brightmaksKd>=0.15)&&(brightmaksKd<=0.85))) {
+            if((huemaksKd<=285 && huemaksKd>255)&&(saturmaksKd>=0.25)&&((brightmaksKd>=0.15)&&(brightmaksKd<=0.95))) {
                 setContentView(R.layout.activity_cek_cocok);
             }
 
@@ -133,9 +135,9 @@ public class CekCocok extends AppCompatActivity {
             }
         }
         //Pink
-        else if((huemaks<345 && huemaks>285)&&(saturmaks>=0.25)&&((brightmaks>=0.15)&&(brightmaks<=0.85))) {
+        else if((huemaks<345 && huemaks>285)&&(saturmaks>=0.25)&&((brightmaks>=0.15)&&(brightmaks<=0.95))) {
 
-            if((huemaksKd<345 && huemaksKd>285)&&(saturmaksKd>=0.25)&&((brightmaksKd>=0.15)&&(brightmaksKd<=0.85))) {
+            if((huemaksKd<345 && huemaksKd>285)&&(saturmaksKd>=0.25)&&((brightmaksKd>=0.15)&&(brightmaksKd<=0.95))) {
                 setContentView(R.layout.activity_cek_cocok);
             }
 
@@ -150,4 +152,10 @@ public class CekCocok extends AppCompatActivity {
 
 
         }
+    public void mainmenu(View view){
+        Intent intent = new Intent(CekCocok.this, MainActivity.class);
+        startActivity(intent);
+    }
+
+
 }
