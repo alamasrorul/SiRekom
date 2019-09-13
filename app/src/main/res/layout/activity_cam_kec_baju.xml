@@ -60,7 +60,7 @@
     <Button
         android:id="@+id/btn_choose_image"
         android:layout_width="180dp"
-        android:layout_height="60dp"
+        android:layout_height="50dp"
         android:background="@drawable/buttonall"
         android:text="Ambil Gambar"
         android:textColor="@android:color/white"
@@ -75,7 +75,7 @@
         android:id="@+id/btn_lanjut"
         android:layout_marginLeft="10dp"
         android:layout_width="180dp"
-        android:layout_height="60dp"
+        android:layout_height="50dp"
         android:layout_gravity="center"
         android:background="@drawable/buttonall"
         android:onClick="lanjut"
