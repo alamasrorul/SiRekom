@@ -13,11 +13,10 @@
         android:id="@+id/textView4"
         android:layout_width="374dp"
         android:layout_height="69dp"
+        android:textColor="@color/black"
         android:text="Hasil Konvert HSV"
         android:textAlignment="center"
         android:textSize="35dp"
-
-        android:textStyle="bold"
         android:typeface="serif"
         android:layout_gravity="center"
 
@@ -36,7 +35,7 @@
     <Button
         android:id="@+id/button4"
         android:layout_width="200dp"
-        android:layout_height="70dp"
+        android:layout_height="60dp"
         android:layout_gravity="center"
         android:background="@drawable/buttonall"
         android:onClick="dominan"

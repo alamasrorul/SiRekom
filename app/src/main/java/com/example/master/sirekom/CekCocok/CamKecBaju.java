@@ -22,11 +22,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 
-import com.example.master.sirekom.PilihanWarna.Hasilpilihanjilbab;
-import com.example.master.sirekom.PilihanWarna.Kamera;
 import com.example.master.sirekom.R;
 
-import org.w3c.dom.Text;
+
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -74,19 +72,19 @@ public class CamKecBaju extends AppCompatActivity {
         proses = intent.getStringExtra("proses");
 
 
-        System.out.println(proses);
+        //System.out.println(proses);
 
 
         //Ubah Text
        if(proses.equals("Krudung")){
             txt = (TextView) findViewById(R.id.textcam);
-            txt.setText("Pilih Hijab");
+            txt.setText("Pilih Jilbab");
            huemaksBj = intent.getIntExtra("huemaksBj",0);
            saturmaksBj = intent.getFloatExtra("saturmaksBj",0f);
            brightmaksBj = intent.getFloatExtra("brightmaksBj",0f);
-           System.out.println(huemaksBj);
-           System.out.println(saturmaksBj);
-           System.out.println(brightmaksBj);
+           //System.out.println(huemaksBj);
+           //System.out.println(saturmaksBj);
+           //System.out.println(brightmaksBj);
        }
 
 

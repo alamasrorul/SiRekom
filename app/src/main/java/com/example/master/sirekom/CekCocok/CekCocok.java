@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 
 import com.example.master.sirekom.MainActivity;
+import com.example.master.sirekom.PilihanWarna.Hasilpilihanjilbab;
 import com.example.master.sirekom.R;
 
 public class CekCocok extends AppCompatActivity {
@@ -47,8 +48,8 @@ public class CekCocok extends AppCompatActivity {
         System.out.println(brightmaks);
 
         //Hitam
-        if(brightmaks<0.25){
-            if(brightmaksKd<0.25){
+        if(brightmaks<0.20){
+            if(brightmaksKd<0.20){
                 setContentView(R.layout.activity_cek_cocok);
             }
             else{
@@ -69,8 +70,8 @@ public class CekCocok extends AppCompatActivity {
 
         }
         //abu"
-        else if(saturmaks<0.25){
-            if(saturmaksKd<0.25){
+        else if(saturmaks<0.20){
+            if(saturmaksKd<0.20){
                 setContentView(R.layout.activity_cek_cocok);
             }
 
@@ -80,10 +81,10 @@ public class CekCocok extends AppCompatActivity {
 
         }
         //RED
-        else if (((huemaks <= 45) || (huemaks <= 360 && huemaks >= 345)) &&(saturmaks>=0.25)&&((brightmaks>=0.15)&&(brightmaks<=0.95))) {
+        else if (((huemaks <= 45) || (huemaks <= 360 && huemaks >= 330))) {
 
             //Pencocokan
-            if(((huemaksKd <= 45) || (huemaksKd <= 360 && huemaksKd >= 345)) &&(saturmaksKd>=0.25)&&((brightmaksKd>=0.15)&&(brightmaksKd<=0.95))){
+            if(((huemaksKd <= 45) || (huemaksKd <= 360 && huemaksKd >= 330)) ){
             setContentView(R.layout.activity_cek_cocok);}
 
             else{
@@ -91,9 +92,9 @@ public class CekCocok extends AppCompatActivity {
             }
         }
         //Kuning
-        else if((huemaks<=60 && huemaks>45)&&(saturmaks>=0.25)&&((brightmaks>=0.15)&&(brightmaks<=0.95))){
+        else if((huemaks<=60 && huemaks>45)){
 
-            if((huemaksKd <= 60 &&huemaks>45) &&(saturmaksKd>=0.25)&&((brightmaksKd>=0.15)&&(brightmaksKd<=0.95))){
+            if((huemaksKd <= 60 &&huemaks>45) ){
                 setContentView(R.layout.activity_cek_cocok);}
 
             else{
@@ -101,9 +102,9 @@ public class CekCocok extends AppCompatActivity {
             }
         }
         //Hijau
-        else if((huemaks<=165 && huemaks>60)&&(saturmaks>=0.25)&&((brightmaks>=0.15)&&(brightmaks<=0.95))) {
+        else if((huemaks<=165 && huemaks>60)) {
 
-            if((huemaksKd<=165 && huemaksKd>60)&&(saturmaksKd>=0.25)&&((brightmaksKd>=0.15)&&(brightmaksKd<=0.95))) {
+            if((huemaksKd<=165 && huemaksKd>60)) {
                 setContentView(R.layout.activity_cek_cocok);
             }
 
@@ -112,9 +113,9 @@ public class CekCocok extends AppCompatActivity {
             }
         }
         //Biru
-        else if((huemaks<=255 && huemaks>165)&&(saturmaks>=0.25)&&((brightmaks>=0.15)&&(brightmaks<=0.95))) {
+        else if((huemaks<=255 && huemaks>165)) {
 
-            if((huemaksKd<=255 && huemaksKd>=165)&&(saturmaksKd>=0.25)&&((brightmaksKd>=0.15)&&(brightmaksKd<=0.95))) {
+            if((huemaksKd<=255 && huemaksKd>=165)) {
                 setContentView(R.layout.activity_cek_cocok);
             }
 
@@ -124,9 +125,9 @@ public class CekCocok extends AppCompatActivity {
         }
 
         //Ungu
-        else if((huemaks<=285 && huemaks>255)&&(saturmaks>=0.25)&&((brightmaks>=0.15)&&(brightmaks<=0.95))) {
+        else if((huemaks<=285 && huemaks>255)) {
 
-            if((huemaksKd<=285 && huemaksKd>255)&&(saturmaksKd>=0.25)&&((brightmaksKd>=0.15)&&(brightmaksKd<=0.95))) {
+            if((huemaksKd<=285 && huemaksKd>255)) {
                 setContentView(R.layout.activity_cek_cocok);
             }
 
@@ -135,9 +136,9 @@ public class CekCocok extends AppCompatActivity {
             }
         }
         //Pink
-        else if((huemaks<345 && huemaks>285)&&(saturmaks>=0.25)&&((brightmaks>=0.15)&&(brightmaks<=0.95))) {
+        else if((huemaks<345 && huemaks>285)) {
 
-            if((huemaksKd<345 && huemaksKd>285)&&(saturmaksKd>=0.25)&&((brightmaksKd>=0.15)&&(brightmaksKd<=0.95))) {
+            if((huemaksKd<345 && huemaksKd>285)) {
                 setContentView(R.layout.activity_cek_cocok);
             }
 
@@ -155,6 +156,17 @@ public class CekCocok extends AppCompatActivity {
     public void mainmenu(View view){
         Intent intent = new Intent(CekCocok.this, MainActivity.class);
         startActivity(intent);
+    }
+
+    public void lanjut(View view) {
+
+            Intent intent = new Intent(CekCocok.this, Hasilpilihanjilbab.class);
+            intent.putExtra("huemaks", huemaks);
+            intent.putExtra("saturmaks", saturmaks);
+            intent.putExtra("brightmaks", brightmaks);
+
+            startActivity(intent);
+
     }
 
 

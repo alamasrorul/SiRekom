@@ -16,11 +16,34 @@ public class Hasilpilihanjilbab extends AppCompatActivity {
     int huemaks;
     float saturmaks, brightmaks;
     Button warna1, warna2, warna3;
+//fuzzy declaration
+
+    //Rule ( Pertambahan Hue)
+    float RJauh=20;
+    float Rdekat =15;
+
+    // Variabel Linguistik (Hue)
+    float Jjauh=360;
+    float Jdekat=0;
+    float input =300;
+    float nilai;
+//fuzzy declaration
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_hasilpilihanjilbab);
+
+//fuzzy algorithm
+        float mt=MiyuJauh(input,Jjauh,Jdekat);
+        float mr=MiyuDekat(input,Jjauh,Jdekat);
+        nilai =(mt*RJauh)+(mr*Rdekat);
+        int hs=Math.round(nilai);
+        System.out.println(hs+"%");
+//fuzzy algorithm
+
+
         try {
             Intent intent = getIntent();
             huemaks = intent.getIntExtra("huemaks",0);
@@ -33,24 +56,123 @@ public class Hasilpilihanjilbab extends AppCompatActivity {
             hsvtemp[2]=brightmaks;
             int dominan = Color.HSVToColor(hsvtemp);
 
-            int fuzzy1 = (huemaks-180>0)?(huemaks-180):(360+huemaks-180);
-            hsvtemp[0]=(float)(fuzzy1);
-            int warnarekom1 = Color.HSVToColor(hsvtemp);
 
-            int fuzzy2 = (huemaks-90>0)?(huemaks-90):(huemaks-90+360);
-            hsvtemp[0]=(float)(fuzzy2);
-            int warnarekom2 = Color.HSVToColor(hsvtemp);
+            //mencari warna
+
+            int fuzzy1, fuzzy2,warnarekom1,warnarekom2;
 
             warna1 = (Button)findViewById(R.id.button5);
             warna2 = (Button)findViewById(R.id.button7);
             warna3 = (Button)findViewById(R.id.button8);
-
             warna1.setBackgroundColor(dominan);
             warna1.setText(Integer.toString(huemaks));
-            warna2.setBackgroundColor(warnarekom1);
-            warna2.setText(Integer.toString(fuzzy1));
-            warna3.setBackgroundColor(warnarekom2);
-            warna3.setText(Integer.toString(fuzzy2));
+
+
+            if(saturmaks>50){
+
+                hsvtemp[1]=40;
+
+
+            }
+            else if(saturmaks>=20){
+
+                hsvtemp[1]=70;
+
+
+            }
+
+
+            if(huemaks<340 &&huemaks>15) {
+                fuzzy1 = (huemaks +hs) ;
+                hsvtemp[0] = (float) (fuzzy1);
+                warnarekom1 = Color.HSVToColor(hsvtemp);
+
+                fuzzy2 = (huemaks - hs) ;
+                hsvtemp[0] = (float) (fuzzy2);
+                 warnarekom2 = Color.HSVToColor(hsvtemp);
+
+
+
+                warna2.setBackgroundColor(warnarekom1);
+                warna2.setText(Integer.toString(fuzzy1));
+                warna3.setBackgroundColor(warnarekom2);
+                warna3.setText(Integer.toString(fuzzy2));
+
+            }
+            else if(huemaks<5){
+
+                fuzzy1 = (huemaks +10) ;
+                hsvtemp[0] = (float) (fuzzy1);
+                warnarekom1 = Color.HSVToColor(hsvtemp);
+
+                fuzzy2 = (huemaks + 20) ;
+                hsvtemp[0] = (float) (fuzzy2);
+                warnarekom2 = Color.HSVToColor(hsvtemp);
+
+
+                warna2.setBackgroundColor(warnarekom1);
+                warna2.setText(Integer.toString(fuzzy1));
+                warna3.setBackgroundColor(warnarekom2);
+                warna3.setText(Integer.toString(fuzzy2));
+
+            }
+
+            else if (huemaks<=15) {
+
+                fuzzy1 = (huemaks +10) ;
+                hsvtemp[0] = (float) (fuzzy1);
+                warnarekom1 = Color.HSVToColor(hsvtemp);
+
+                fuzzy2 = (huemaks + 20) ;
+                hsvtemp[0] = (float) (fuzzy2);
+                warnarekom2 = Color.HSVToColor(hsvtemp);
+
+
+                warna2.setBackgroundColor(warnarekom1);
+                warna2.setText(Integer.toString(fuzzy1));
+                warna3.setBackgroundColor(warnarekom2);
+                warna3.setText(Integer.toString(fuzzy2));
+
+
+            }
+            else if (huemaks>355) {
+
+                fuzzy1 = (huemaks -10) ;
+                hsvtemp[0] = (float) (fuzzy1);
+                warnarekom1 = Color.HSVToColor(hsvtemp);
+
+                fuzzy2 = (huemaks - 15) ;
+                hsvtemp[0] = (float) (fuzzy2);
+                warnarekom2 = Color.HSVToColor(hsvtemp);
+
+
+                warna2.setBackgroundColor(warnarekom1);
+                warna2.setText(Integer.toString(fuzzy1));
+                warna3.setBackgroundColor(warnarekom2);
+                warna3.setText(Integer.toString(fuzzy2));
+
+
+            }
+            else if (huemaks>=340) {
+
+                fuzzy1 = (huemaks -10) ;
+                hsvtemp[0] = (float) (fuzzy1);
+                warnarekom1 = Color.HSVToColor(hsvtemp);
+
+                fuzzy2 = (huemaks - 15) ;
+                hsvtemp[0] = (float) (fuzzy2);
+                warnarekom2 = Color.HSVToColor(hsvtemp);
+
+
+                warna2.setBackgroundColor(warnarekom1);
+                warna2.setText(Integer.toString(fuzzy1));
+                warna3.setBackgroundColor(warnarekom2);
+                warna3.setText(Integer.toString(fuzzy2));
+
+
+            }
+
+
 
 
         } catch (Exception e) {
@@ -58,6 +180,22 @@ public class Hasilpilihanjilbab extends AppCompatActivity {
         }
 
     }
+
+// Fuzzy Component
+    public static float MiyuJauh(float a, float jauh,float dekat){
+        float hasil = (jauh-a) /(jauh-dekat);
+
+        return hasil;
+
+    }
+
+    public static float MiyuDekat(float a,float jauh,float dekat)
+    {
+        float hasil = (a-dekat)/(jauh-dekat);
+        return hasil;}
+// Fuzzy Component
+
+
 
     public void awal(View view) {
         Intent intent = new Intent(Hasilpilihanjilbab.this, MainActivity.class);

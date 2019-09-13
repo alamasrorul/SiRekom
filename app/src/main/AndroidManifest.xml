@@ -24,8 +24,7 @@
         <activity android:name=".MainActivity" />
         <activity android:name=".PilihanWarna.Kamera" />
         <activity android:name=".PilihanWarna.Hasilpilihanjilbab" />
-        <activity android:name=".WarBaJilSer" />
-        <activity android:name=".WarJilBaTikSer" />
+        <activity android:name=".CekCocok.WarJilBaTikSer" />
         <activity android:name=".PilihanWarna.WarnaDominan" />
 
         <provider

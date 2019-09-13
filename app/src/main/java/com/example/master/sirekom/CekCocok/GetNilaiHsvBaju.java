@@ -10,11 +10,7 @@ import android.graphics.BitmapFactory;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.example.master.sirekom.MainActivity;
-import com.example.master.sirekom.PilihanWarna.Hasilpilihanjilbab;
-
 import com.example.master.sirekom.R;
-import com.example.master.sirekom.WarBaJilSer;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -31,6 +27,7 @@ public class GetNilaiHsvBaju extends AppCompatActivity {
 
     ImageView imageView;
     TextView textView;
+
     int bitmap_size = 40;
     int max_resolution_image = 500;
     int nilaiHue[][];

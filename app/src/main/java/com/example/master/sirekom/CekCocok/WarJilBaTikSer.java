@@ -1,7 +1,9 @@
-package com.example.master.sirekom;
+package com.example.master.sirekom.CekCocok;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+
+import com.example.master.sirekom.R;
 
 public class WarJilBaTikSer extends AppCompatActivity {
 
