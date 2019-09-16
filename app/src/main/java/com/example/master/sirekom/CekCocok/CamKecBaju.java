@@ -22,6 +22,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 
+import com.example.master.sirekom.PilihanWarna.Kamera;
 import com.example.master.sirekom.R;
 
 
@@ -92,6 +93,8 @@ public class CamKecBaju extends AppCompatActivity {
     }
 
     public void lanjut(View view) {
+
+        if(uriPath!=null){
         Intent intent = new Intent(CamKecBaju.this, GetNilaiHsvBaju.class);
         intent.putExtra("uriPath", uriPath);
         if (proses.equals("Baju")) {
@@ -103,9 +106,44 @@ public class CamKecBaju extends AppCompatActivity {
             intent.putExtra("brightmaksBj", brightmaksBj);
         }
 
-        startActivity(intent);
+        startActivity(intent);}
+        else
+        {
+            errorImage();
+        }
 
     }
+
+    private void errorImage() {
+        imageView.setImageResource(0);
+        final CharSequence[] items = {"Ambil Foto", "Ambil dari Galeri", "Batal"};
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(CamKecBaju.this);
+        builder.setTitle("Pilih Gambar Dahulu");
+        builder.setIcon(R.mipmap.ic_launcher_rd);
+        builder.setItems(items, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int item) {
+                if (items[item].equals("Ambil Foto")) {
+                    intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                    StrictMode.VmPolicy.Builder builder = new StrictMode.VmPolicy.Builder();
+                    StrictMode.setVmPolicy(builder.build());
+                    fileUri = getOutputMediaFileUri();
+                    intent.putExtra(android.provider.MediaStore.EXTRA_OUTPUT, fileUri);
+                    startActivityForResult(intent, REQUEST_CAMERA);
+                } else if (items[item].equals("Ambil dari Galeri")) {
+                    intent = new Intent();
+                    intent.setType("image/*");
+                    intent.setAction(Intent.ACTION_GET_CONTENT);
+                    startActivityForResult(Intent.createChooser(intent, "Select Picture"), SELECT_FILE);
+                } else if (items[item].equals("Batal")) {
+                    dialog.dismiss();
+                }
+            }
+        });
+        builder.show();
+    }
+
     //Select Image from gallery or Camera
     private void selectImage() {
         imageView.setImageResource(0);

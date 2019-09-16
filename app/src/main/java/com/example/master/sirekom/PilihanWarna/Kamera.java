@@ -67,10 +67,45 @@ public class Kamera extends AppCompatActivity {
     }
 
     public void lanjut(View view) {
+
+        if(uriPath!=null){
         Intent intent = new Intent(Kamera.this, WarnaDominan.class);
         intent.putExtra("uriPath", uriPath);
         intent.putExtra("proses", proses);
-        startActivity(intent);
+        startActivity(intent);}
+        else{
+            errorImage();
+
+        }
+    }
+    private void errorImage() {
+        imageView.setImageResource(0);
+        final CharSequence[] items = {"Ambil Foto", "Ambil dari Galeri", "Batal"};
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(Kamera.this);
+        builder.setTitle("Pilih Gambar Dahulu");
+        builder.setIcon(R.mipmap.ic_launcher_rd);
+        builder.setItems(items, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int item) {
+                if (items[item].equals("Ambil Foto")) {
+                    intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                    StrictMode.VmPolicy.Builder builder = new StrictMode.VmPolicy.Builder();
+                    StrictMode.setVmPolicy(builder.build());
+                    fileUri = getOutputMediaFileUri();
+                    intent.putExtra(android.provider.MediaStore.EXTRA_OUTPUT, fileUri);
+                    startActivityForResult(intent, REQUEST_CAMERA);
+                } else if (items[item].equals("Ambil dari Galeri")) {
+                    intent = new Intent();
+                    intent.setType("image/*");
+                    intent.setAction(Intent.ACTION_GET_CONTENT);
+                    startActivityForResult(Intent.createChooser(intent, "Select Picture"), SELECT_FILE);
+                } else if (items[item].equals("Batal")) {
+                    dialog.dismiss();
+                }
+            }
+        });
+        builder.show();
     }
 
     private void selectImage() {
