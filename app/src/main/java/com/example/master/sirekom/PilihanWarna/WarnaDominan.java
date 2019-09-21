@@ -77,6 +77,9 @@ public class WarnaDominan extends AppCompatActivity {
         nilaiHue = new int[width][height];
         saturasi = new float[width][height];
         brightness = new float[width][height];
+
+        // Pencarian Nilai RGB
+
         for (int i = 0; i < bitmap1.getWidth(); i++) {
             for (int j = 0; j < bitmap1.getHeight(); j++) {
                 int p = bitmap1.getPixel(i, j);
@@ -130,12 +133,14 @@ public class WarnaDominan extends AppCompatActivity {
         }
         saturmaks = tempS / jum;
         brigthmaks = tempV / jum;
-
+        // RGB
         Bitmap operation = Bitmap.createBitmap(width, height, bitmap1.getConfig());
         float[] hsvtemp = new float[3];
         hsvtemp[0] = (float) indexMaxHue;
         hsvtemp[1] = saturmaks;
         hsvtemp[2] = brigthmaks;
+
+        // Convert Rgb --> Hsv
         int warna = Color.HSVToColor(hsvtemp);
         for (int i = 0; i < height; i++) {
             for (int j = 0; j < width; j++) {

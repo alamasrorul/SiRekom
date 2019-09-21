@@ -78,6 +78,8 @@ public class GetNilaiHsvBaju extends AppCompatActivity {
 
 
     public void dominan(View view) {
+
+        //ID Proses
         if (proses.equals("Baju")) {
 
             Intent intent = new Intent(GetNilaiHsvBaju.this, CamKecBaju.class);
@@ -99,6 +101,7 @@ public class GetNilaiHsvBaju extends AppCompatActivity {
         }
     }
 
+    //Proses Gambar
     private void prosesGambar(Bitmap bitmap1) {
         height = bitmap1.getHeight();
         width = bitmap1.getWidth();
@@ -164,7 +167,11 @@ public class GetNilaiHsvBaju extends AppCompatActivity {
         hsvtemp[0] = (float) indexMaxHue;
         hsvtemp[1] = saturmaks;
         hsvtemp[2] = brigthmaks;
+
+        //Convert RGB to HSV
         int warna = Color.HSVToColor(hsvtemp);
+        //Convert RGB to HSV
+
         for (int i = 0; i < height; i++) {
             for (int j = 0; j < width; j++) {
                 int hue = nilaiHue[j][i];
@@ -179,6 +186,8 @@ public class GetNilaiHsvBaju extends AppCompatActivity {
 
         setToImageView(operation);
     }
+
+    //Set Image To ImageView
 
     private void setToImageView(Bitmap bmp) {
         ByteArrayOutputStream bytes = new ByteArrayOutputStream();
