@@ -59,6 +59,8 @@ public class WarnaDominan extends AppCompatActivity {
         System.out.println(indexMaxHue);
     }
 
+    //methode masuk Hasil Rekom Warna
+
     public void dominan(View view) {
         if (proses.equals("pilihan")) {
 
@@ -71,6 +73,7 @@ public class WarnaDominan extends AppCompatActivity {
     }
 
 
+    //Proses Pencarian RGB HSV gambar
     private void prosesGambar(Bitmap bitmap1) {
         height = bitmap1.getHeight();
         width = bitmap1.getWidth();
@@ -157,6 +160,8 @@ public class WarnaDominan extends AppCompatActivity {
         setToImageView(operation);
     }
 
+    //Methode menampilkan gambar
+
     private void setToImageView(Bitmap bmp) {
         ByteArrayOutputStream bytes = new ByteArrayOutputStream();
         bmp.compress(Bitmap.CompressFormat.JPEG, bitmap_size, bytes);
@@ -165,6 +170,7 @@ public class WarnaDominan extends AppCompatActivity {
         imageView.setImageBitmap(decoded);
     }
 
+    //Methode Mengatur ukuran gambar
     public Bitmap getResizedBitmap(Bitmap image, int maxSize) {
         int width = image.getWidth();
         int height = image.getHeight();

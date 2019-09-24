@@ -76,7 +76,7 @@ public class CamKecBaju extends AppCompatActivity {
         //System.out.println(proses);
 
 
-        //Ubah Text
+        //Proses Ketika Masuk pilih Jilbab
        if(proses.equals("Krudung")){
             txt = (TextView) findViewById(R.id.textcam);
             txt.setText("Pilih Jilbab");
@@ -92,6 +92,8 @@ public class CamKecBaju extends AppCompatActivity {
 
     }
 
+
+    //Methode lanjut ke HSV
     public void lanjut(View view) {
 
         if(uriPath!=null){
@@ -114,6 +116,8 @@ public class CamKecBaju extends AppCompatActivity {
 
     }
 
+
+    //Methode jika gambar belum di pilih
     private void errorImage() {
         imageView.setImageResource(0);
         final CharSequence[] items = {"Ambil Foto", "Ambil dari Galeri", "Batal"};
@@ -175,6 +179,7 @@ public class CamKecBaju extends AppCompatActivity {
         builder.show();
     }
 
+    //select image from camera
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         Log.e("onActivityResult", "requestCode " + requestCode + " resultCode " + requestCode);
         if (resultCode == Activity.RESULT_OK) {
@@ -202,6 +207,7 @@ public class CamKecBaju extends AppCompatActivity {
 
     }
 
+    //Methode mendapat url image
 
     private String getRealPath(Context context, Uri uri) {
         String filePath = "";
@@ -227,6 +233,7 @@ public class CamKecBaju extends AppCompatActivity {
         return filePath;
     }
 
+    //Methode mengatatur gambar agar dapat di tampilkan di image view 
     private void setToImageView(Bitmap bmp) {
         ByteArrayOutputStream bytes = new ByteArrayOutputStream();
         bmp.compress(Bitmap.CompressFormat.JPEG, bitmap_size, bytes);
@@ -234,6 +241,8 @@ public class CamKecBaju extends AppCompatActivity {
 
         imageView.setImageBitmap(decoded);
     }
+
+    //Methode mengatur ukuran gambar
 
     public Bitmap getResizedBitmap(Bitmap image, int maxSize) {
         int width = image.getWidth();
@@ -254,7 +263,7 @@ public class CamKecBaju extends AppCompatActivity {
         return Uri.fromFile(getOutputMediaFile());
     }
 
-
+    //exception handling
     private static File getOutputMediaFile() {
         File mediaStorageDir = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES), "Tike");
         if (!mediaStorageDir.exists()) {

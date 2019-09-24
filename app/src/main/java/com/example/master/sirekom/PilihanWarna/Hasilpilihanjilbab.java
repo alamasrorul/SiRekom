@@ -68,6 +68,8 @@ public class Hasilpilihanjilbab extends AppCompatActivity {
             warna1.setText(Integer.toString(huemaks));
 
 
+            //Pengaplikasian Nilai Hasil Fuzzy
+
             if(saturmaks>50){
 
                 hsvtemp[1]=40;

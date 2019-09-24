@@ -66,6 +66,7 @@ public class Kamera extends AppCompatActivity {
         });
     }
 
+    //Tombol Masuk Ke HSV
     public void lanjut(View view) {
 
         if(uriPath!=null){
@@ -78,6 +79,8 @@ public class Kamera extends AppCompatActivity {
 
         }
     }
+
+    //Jika Gambar Belum Dipilih
     private void errorImage() {
         imageView.setImageResource(0);
         final CharSequence[] items = {"Ambil Foto", "Ambil dari Galeri", "Batal"};
@@ -108,6 +111,8 @@ public class Kamera extends AppCompatActivity {
         builder.show();
     }
 
+
+    //Pilihan Gambar (dari Galleri / Kamera)
     private void selectImage() {
         imageView.setImageResource(0);
         final CharSequence[] items = {"Ambil Foto", "Ambil dari Galeri", "Batal"};
@@ -138,6 +143,7 @@ public class Kamera extends AppCompatActivity {
         builder.show();
     }
 
+    //Methode Kamera
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         Log.e("onActivityResult", "requestCode " + requestCode + " resultCode " + requestCode);
         if (resultCode == Activity.RESULT_OK) {
@@ -165,7 +171,7 @@ public class Kamera extends AppCompatActivity {
 
     }
 
-
+    //Methode cari dari galleru
     private String getRealPath(Context context, Uri uri) {
         String filePath = "";
         String wholeID = DocumentsContract.getDocumentId(uri);
@@ -190,6 +196,7 @@ public class Kamera extends AppCompatActivity {
         return filePath;
     }
 
+    //Methode mengatatur gambar agar dapat di tampilkan di image view
     private void setToImageView(Bitmap bmp) {
         ByteArrayOutputStream bytes = new ByteArrayOutputStream();
         bmp.compress(Bitmap.CompressFormat.JPEG, bitmap_size, bytes);
@@ -198,6 +205,7 @@ public class Kamera extends AppCompatActivity {
         imageView.setImageBitmap(decoded);
     }
 
+    //Methode untuk menyesuaikan ukuran gambar
     public Bitmap getResizedBitmap(Bitmap image, int maxSize) {
         int width = image.getWidth();
         int height = image.getHeight();
@@ -213,10 +221,13 @@ public class Kamera extends AppCompatActivity {
         return Bitmap.createScaledBitmap(image, width, height, true);
     }
 
+    //Methode untuk mendapatkan Url gambar
     public Uri getOutputMediaFileUri() {
         return Uri.fromFile(getOutputMediaFile());
     }
 
+
+//exception handling
 
     private static File getOutputMediaFile() {
         File mediaStorageDir = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES), "Tike");

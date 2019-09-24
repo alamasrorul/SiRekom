@@ -61,6 +61,8 @@ public class GetNilaiHsvBaju extends AppCompatActivity {
             e.printStackTrace();
         }
         proses = intent.getStringExtra("proses");
+
+        //proses ketika masuk hsv jilbab
         if(proses.equals("Krudung")) {
             huemaksBj = intent.getIntExtra("huemaksBj", 0);
             saturmaksBj = intent.getFloatExtra("saturmaksBj",0f);
@@ -76,6 +78,8 @@ public class GetNilaiHsvBaju extends AppCompatActivity {
 
     }
 
+
+    //method untuk lanjut ke Cek kecocokan dan kembali ke kamera untuk jilbab
 
     public void dominan(View view) {
 
@@ -101,7 +105,7 @@ public class GetNilaiHsvBaju extends AppCompatActivity {
         }
     }
 
-    //Proses Gambar
+    //Proses HSV Gambar
     private void prosesGambar(Bitmap bitmap1) {
         height = bitmap1.getHeight();
         width = bitmap1.getWidth();
@@ -187,7 +191,7 @@ public class GetNilaiHsvBaju extends AppCompatActivity {
         setToImageView(operation);
     }
 
-    //Set Image To ImageView
+    //Methode mengatatur gambar agar dapat di tampilkan di image view 
 
     private void setToImageView(Bitmap bmp) {
         ByteArrayOutputStream bytes = new ByteArrayOutputStream();
@@ -196,6 +200,7 @@ public class GetNilaiHsvBaju extends AppCompatActivity {
 
         imageView.setImageBitmap(decoded);
     }
+    //Methode mengatur ukuran gambar
 
     public Bitmap getResizedBitmap(Bitmap image, int maxSize) {
         int width = image.getWidth();

@@ -221,11 +221,14 @@ public class CekCocok extends AppCompatActivity {
         }
 
         }
+
+        //Methode kembali ke main menu
     public void mainmenu(View view){
         Intent intent = new Intent(CekCocok.this, MainActivity.class);
         startActivity(intent);
     }
 
+    //methode lanjut ke rekom warna
     public void lanjut(View view) {
 
             Intent intent = new Intent(CekCocok.this, Hasilpilihanjilbab.class);
